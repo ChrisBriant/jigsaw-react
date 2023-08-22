@@ -1,12 +1,13 @@
 import {useContext} from "react";
 import {Context as JigsawContext} from "../../context/JigsawContext";
+import JigsawPiece from "./JigsawPiece";
 
 const JigsawPieceSelect = () => {
-  const {state:{jigsaw}} = useContext(JigsawContext);
+  const {state:{jigsawPieces}} = useContext(JigsawContext);
 
   return(
-    jigsaw.length > 0
-    ? <p>selected piece goes here.</p>
+    jigsawPieces.length > 0
+    ? <JigsawPiece piece={jigsawPieces[0]}  />
     : <p>loading...</p>
   );  
 }

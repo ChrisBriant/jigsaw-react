@@ -155,6 +155,10 @@ const MainCanvasScreen = () => {
               grid.push(imageTile);
           }
       }
+      //Clear the canvas
+      context.fillStyle = "#fff";
+      context.fillRect(0,0,canvasWidth,canvasHeight);
+
       //Store the grid in context state
       setGrid(grid);
       createJigsaw();

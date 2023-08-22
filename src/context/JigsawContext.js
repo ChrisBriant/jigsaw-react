@@ -3,10 +3,12 @@ import createDataContext from './createDataContext';
 const defaultState = {
   imageGrid : [],
   jigsaw : [],
+  jigsawPieces : [],
   canvasWidth : 0,
   canvasHeight : 0,
   segmentSize : 0,
   tileSizeFactor : 0,
+  maxPieceSize : 0,
 };
 
 const jigsawReducer = (state,action) => {
@@ -17,15 +19,24 @@ const jigsawReducer = (state,action) => {
     case 'setJigsaw':
       return {...state,jigsaw:action.payload};
     case 'setJigsawPieces':
-      const piece = action.payload.jigsaw[0];
+      const jigsawPieces = []; 
+      //const piece = action.payload.jigsaw[0];
       action.payload.jigsaw.forEach(piece => {
-        const pieceObj = getJigSawPieceObject(piece,state.imageGrid);
-        const translatedPiece = translateJigSawPiece(pieceObj);
+        const originalPiece = getJigSawPieceObject(piece,state.imageGrid);
+        const translatedPiece = translateJigSawPiece(originalPiece);
         const pieceSize = getPieceSize(translatedPiece);
         const centeredPiece = translateJigSawPieceCenter(translatedPiece,pieceSize,action.payload.maxPieceSize);
-        console.log('pieceObj',pieceObj, pieceSize,translatedPiece,centeredPiece);
+        const pieceObj = {
+          originalPiece,
+          translatedPiece,
+          pieceSize,
+          centeredPiece,
+          maxPieceSize : action.payload.maxPieceSize,
+        }
+        jigsawPieces.push(pieceObj)
+        //console.log('pieceObj',pieceObj, pieceSize,translatedPiece,centeredPiece);
       });
-      return {...state,jigsawPieces:[]};
+      return {...state,jigsawPieces:jigsawPieces,maxPieceSize:action.payload.maxPieceSize};
     case 'setCanvas':
       return {...state,
         canvasWidth:action.payload.width,
