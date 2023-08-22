@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import {Provider as JigsawProvider} from "../src/context/JigsawContext";
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <JigsawProvider>
+        <App />
+    </JigsawProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
