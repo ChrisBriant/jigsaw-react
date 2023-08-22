@@ -1,5 +1,6 @@
 import './App.css';
 import MainCanvasScreen from './components/MainCanvasScreen';
+import JigsawPieceSelect from './components/widgets/JigsawPieceSelect';
 
 function App() {
   return (
@@ -8,8 +9,8 @@ function App() {
         <p>Header</p>
       </header>
       <main>
-        <p>I am the canvas, I am the eggman</p>
         <MainCanvasScreen />
+        <JigsawPieceSelect />
       </main>
       <footer>
         <p>Footer</p>

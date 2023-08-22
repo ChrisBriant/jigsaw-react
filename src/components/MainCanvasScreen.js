@@ -4,7 +4,7 @@ import {getRandomInt,getArrayDifference,getRandomObjectFromArray} from "../helpe
 import image from '../assets/img/image.jpg';
 
 const MainCanvasScreen = () => {
-  const {setGrid,setCanvas} = useContext(JigsawContext);
+  const {setGrid,setCanvas,setJigsaw,setJigsawPieces} = useContext(JigsawContext);
   const canvasRef = useRef(null);
 
   //const canvas = canvasRef.current;
@@ -159,6 +159,8 @@ const MainCanvasScreen = () => {
       setGrid(grid);
       createJigsaw();
       console.log('JIGSAW DONE', jigsawPieces);
+      //setJigsaw(jigsawPieces);
+      setJigsawPieces(jigsawPieces,256);
       
     }
 
